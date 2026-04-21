@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment Form | Rdana Action Center</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .radio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.5rem;
+    }
+    .evaluation-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+    }
+    .evaluation-table th, .evaluation-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--cool-gray-light);
+      text-align: center;
+    }
+    .evaluation-table th:first-child, .evaluation-table td:first-child {
+      text-align: left;
+    }
+    .inline-input {
+      border: none;
+      border-bottom: 1px solid var(--cool-gray-medium);
+      background: transparent;
+      outline: none;
+      padding: 0.25rem;
+      font-family: inherit;
+    }
+    .checkbox-group {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .checkbox-group input[type="text"] {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">
+        <i class="fa-solid fa-house-crack"></i> Rdana
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="form.html" style="color: var(--primary-navy); font-weight: 700;">Assessment Form</a>
+        <a href="analytics.html">Analytics</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="padding: 4rem 0 8rem 0;">
+    <div class="container">
+      <h1>Rapid Damage Assessment Form</h1>
+      <p>Please fill out the details accurately. This form will be saved and added to the analytics dashboard.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="form-container">
+        <div id="successAlert" class="alert alert-success">
+          <i class="fa-solid fa-circle-check"></i> Assessment submitted successfully! Redirecting to print view...
+        </div>
+
+        <form id="assessmentForm">
+          
+          <!-- 1. Inspection -->
+          <h3 class="section-title">Inspection</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="inspectorName">Inspector *</label>
+              <input type="text" id="inspectorName" name="inspectorName" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="agency">Agency/Campus *</label>
+              <input type="text" id="agency" name="agency" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="inspectionDate">Inspection Date *</label>
+              <input type="date" id="inspectionDate" name="inspectionDate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inspectionTime">Time (24 hour clock) *</label>
+              <input type="time" id="inspectionTime" name="inspectionTime" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Areas Inspected *</label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="areasInspected" value="Exterior Only" required> Exterior Only</label>
+              <label class="radio-label"><input type="radio" name="areasInspected" value="Exterior and interior" required> Exterior and interior</label>
+            </div>
+          </div>
+
+          <!-- 2. Building Description -->
+          <h3 class="section-title">Building Description</h3>
+          <div class="form-group">
+            <label class="form-label" for="buildingName">Building Name *</label>
+            <input type="text" id="buildingName" name="buildingName" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="buildingAddress">Address *</label>
+            <input type="text" id="buildingAddress" name="buildingAddress" class="form-control" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="buildingMarshal">Building Marshal</label>
+              <input type="text" id="buildingMarshal" name="buildingMarshal" class="form-control">
+            </div>
+            <div class="form-group" style="display: flex; gap: 1rem; align-items: flex-end;">
+              <div style="flex: 1;">
+                <label class="form-label" for="storiesAbove">Number of stories above ground</label>
+                <input type="number" id="storiesAbove" name="storiesAbove" class="form-control">
+              </div>
+              <div style="flex: 1;">
+                <label class="form-label" for="storiesBelow">below ground</label>
+                <input type="number" id="storiesBelow" name="storiesBelow" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Type of Construction *</label>
+              <div class="radio-group" style="flex-direction: column;">
+                <label class="radio-label"><input type="radio" name="structureType" value="Wood Frame" required> Wood Frame</label>
+                <label class="radio-label"><input type="radio" name="structureType" value="Steel Frame"> Steel Frame</label>
+                <label class="radio-label"><input type="radio" name="structureType" value="Concrete Frame"> Concrete Frame</label>
+                <label class="radio-label"><input type="radio" name="structureType" value="Masonry"> Masonry</label>
+                <label class="radio-label"><input type="radio" name="structureType" value="Other"> Other: <input type="text" name="structureTypeOther" class="inline-input"></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Primary Occupancy *</label>
+              <div class="radio-grid">
+                <label class="radio-label"><input type="radio" name="buildingUse" value="Single Family Dwelling" required> Single Family Dwelling</label>
+                <label class="radio-label"><input type="radio" name="buildingUse" value="Multi-residential"> Multi-residential</label>
+                <label class="radio-label"><input type="radio" name="buildingUse" value="Emergency Services"> Emergency Services</label>
+                <label class="radio-label"><input type="radio" name="buildingUse" value="Industrial"> Industrial</label>
+                <label class="radio-label"><input type="radio" name="buildingUse" value="Offices"> Offices</label>
+                <label class="radio-label"><input type="radio" name="buildingUse" value="Commercial"> Commercial</label>
+                <label class="radio-label"><input type="radio" name="buildingUse" value="School"> School</label>
+                <label class="radio-label"><input type="radio" name="buildingUse" value="Government"> Government</label>
+                <label class="radio-label"><input type="radio" name="buildingUse" value="Other"> Other: <input type="text" name="buildingUseOther" class="inline-input"></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Evaluation -->
+          <h3 class="section-title">Evaluation</h3>
+          <p style="margin-bottom: 1rem;">Investigate the building and area around it for the conditions below and check the appropriate column.</p>
+          
+          <div style="overflow-x: auto;">
+            <table class="evaluation-table">
+              <thead>
+                <tr>
+                  <th>Observed Conditions</th>
+                  <th>Minor/None</th>
+                  <th>Moderate</th>
+                  <th>Severe</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Collapse Structure</td>
+                  <td><input type="radio" name="condCollapse" value="Minor/None" required></td>
+                  <td><input type="radio" name="condCollapse" value="Moderate"></td>
+                  <td><input type="radio" name="condCollapse" value="Severe"></td>
+                </tr>
+                <tr>
+                  <td>Building or story leaning / out of plumb</td>
+                  <td><input type="radio" name="condLeaning" value="Minor/None" required></td>
+                  <td><input type="radio" name="condLeaning" value="Moderate"></td>
+                  <td><input type="radio" name="condLeaning" value="Severe"></td>
+                </tr>
+                <tr>
+                  <td>Damage to primary structural members, racking of walls</td>
+                  <td><input type="radio" name="condDamage" value="Minor/None" required></td>
+                  <td><input type="radio" name="condDamage" value="Moderate"></td>
+                  <td><input type="radio" name="condDamage" value="Severe"></td>
+                </tr>
+                <tr>
+                  <td>Falling hazards</td>
+                  <td><input type="radio" name="condFalling" value="Minor/None" required></td>
+                  <td><input type="radio" name="condFalling" value="Moderate"></td>
+                  <td><input type="radio" name="condFalling" value="Severe"></td>
+                </tr>
+                <tr>
+                  <td>Ground movement or slope</td>
+                  <td><input type="radio" name="condGround" value="Minor/None" required></td>
+                  <td><input type="radio" name="condGround" value="Moderate"></td>
+                  <td><input type="radio" name="condGround" value="Severe"></td>
+                </tr>
+                <tr>
+                  <td>Damaged / submerged fixtures or services</td>
+                  <td><input type="radio" name="condFixtures" value="Minor/None" required></td>
+                  <td><input type="radio" name="condFixtures" value="Moderate"></td>
+                  <td><input type="radio" name="condFixtures" value="Severe"></td>
+                </tr>
+                <tr>
+                  <td>Proximity risks / other: <input type="text" name="condOtherSpecify" class="inline-input"></td>
+                  <td><input type="radio" name="condOther" value="Minor/None" required></td>
+                  <td><input type="radio" name="condOther" value="Moderate"></td>
+                  <td><input type="radio" name="condOther" value="Severe"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Estimated Building Damage (excluding contents) *</label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="estimatedDamage" value="None" required> None</label>
+              <label class="radio-label"><input type="radio" name="estimatedDamage" value="1 - 10%"> 1 - 10%</label>
+              <label class="radio-label"><input type="radio" name="estimatedDamage" value="11 - 30%"> 11 - 30%</label>
+              <label class="radio-label"><input type="radio" name="estimatedDamage" value="31 - 60%"> 31 - 60%</label>
+              <label class="radio-label"><input type="radio" name="estimatedDamage" value="61 - 99%"> 61 - 99%</label>
+              <label class="radio-label"><input type="radio" name="estimatedDamage" value="100%"> 100%</label>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="evalComments">Comments:</label>
+            <textarea id="evalComments" name="evalComments" class="form-control" rows="2"></textarea>
+          </div>
+
+          <!-- 4. Posting -->
+          <h3 class="section-title">Posting (Overall Safety Status) *</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem;">Severe conditions endangering the overall building are grounds for an Unsafe posting. Localised Severe and overall Moderate conditions may allow a Restricted Use posting.</p>
+          
+          <div class="status-cards" id="statusCards">
+            <div class="status-card green" data-value="Safe">
+              <i class="fa-solid fa-check-circle fa-2x" style="margin-bottom: 0.5rem;"></i>
+              <h4>INSPECTED (Green placard)</h4>
+            </div>
+            <div class="status-card yellow" data-value="Restricted">
+              <i class="fa-solid fa-exclamation-triangle fa-2x" style="margin-bottom: 0.5rem;"></i>
+              <h4>RESTRICTED USE (Yellow placard)</h4>
+            </div>
+            <div class="status-card red" data-value="Unsafe">
+              <i class="fa-solid fa-ban fa-2x" style="margin-bottom: 0.5rem;"></i>
+              <h4>UNSAFE (Red placard)</h4>
+            </div>
+          </div>
+          <input type="hidden" id="safetyStatus" name="safetyStatus" required>
+
+          <p style="font-size: 0.9rem; margin-top: 1rem; margin-bottom: 0.5rem;">Record any use and entry restrictions exactly as written on placard:</p>
+          <div class="checkbox-group">
+            <input type="checkbox" id="resDoNotEnter" name="resDoNotEnter">
+            <label for="resDoNotEnter">Do not enter or use the following areas:</label>
+            <input type="text" name="resDoNotEnterText" class="inline-input">
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="resBriefEntry" name="resBriefEntry">
+            <label for="resBriefEntry">Brief entry allowed for access to contents:</label>
+            <input type="text" name="resBriefEntryText" class="inline-input">
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="resDoNotUse" name="resDoNotUse">
+            <label for="resDoNotUse">Do not use flooded/damaged appliances, devices or services (electric, gas) until recertified by a licensed contractor</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="resOther" name="resOther">
+            <label for="resOther">Other restrictions:</label>
+            <input type="text" name="resOtherText" class="inline-input">
+          </div>
+
+          <!-- 5. Further Actions -->
+          <h3 class="section-title">Further Actions</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem;">Check the boxes below only if further actions are needed.</p>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="actBarricades" name="actBarricades">
+            <label for="actBarricades">Barricades needed in the following areas:</label>
+            <input type="text" name="actBarricadesText" class="inline-input">
+          </div>
+          <div class="checkbox-group" style="align-items: flex-start;">
+            <input type="checkbox" id="actDetailed" name="actDetailed">
+            <label for="actDetailed" style="margin-right: 1rem;">Detailed Evaluation recommended:</label>
+            <div style="display: flex; gap: 1rem;">
+              <label><input type="checkbox" name="actDetailedStructural"> Structural</label>
+              <label><input type="checkbox" name="actDetailedGeotechnical"> Geotechnical</label>
+              <label><input type="checkbox" name="actDetailedOther"> Other</label>
+            </div>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="actOther" name="actOther">
+            <label for="actOther">Other recommendations:</label>
+            <input type="text" name="actOtherText" class="inline-input">
+          </div>
+          <div class="form-group" style="margin-top: 1rem;">
+            <label class="form-label" for="actComments">Comments:</label>
+            <textarea id="actComments" name="actComments" class="form-control" rows="2"></textarea>
+          </div>
+
+          <div style="text-align: right; margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary" style="font-size: 1.125rem;"><i class="fa-solid fa-check"></i> Submit Assessment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="padding-top: 0; border: none;">
+        &copy; 2026 Rdana Action Center.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/form.js"></script>
+</body>
+</html>

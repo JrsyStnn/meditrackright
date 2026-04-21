@@ -1,0 +1,209 @@
+/* print.css - Specifically designed to match the physical paper layout */
+@import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&family=Arial:wght@400;700&display=swap');
+
+:root {
+  --border-color: #000;
+  --bg-dark: #000;
+  --text-dark: #000;
+  --font-serif: 'Times New Roman', Times, serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-family: var(--font-serif);
+  color: var(--text-dark);
+  background-color: #fff;
+  margin: 0;
+  padding: 20px;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.print-container {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 2px solid var(--border-color);
+  padding-bottom: 5px;
+}
+
+/* Header */
+.print-header {
+  background-color: var(--bg-dark);
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  font-family: var(--font-sans);
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Sections */
+.print-section {
+  border-bottom: 2px solid var(--border-color);
+  padding: 5px 10px;
+}
+.print-section:last-child {
+  border-bottom: none;
+}
+
+.section-title {
+  font-family: var(--font-sans);
+  font-weight: bold;
+  font-size: 12px;
+  margin: 0 0 5px 0;
+}
+
+/* Grids and Layout */
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.w-50 { width: 48%; }
+.w-33 { width: 32%; }
+.w-100 { width: 100%; }
+
+/* Form Fields */
+.field {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+.field label {
+  margin-right: 5px;
+}
+
+.field-value {
+  border-bottom: 1px solid var(--border-color);
+  flex-grow: 1;
+  min-height: 14px;
+  display: inline-block;
+  padding-left: 2px;
+  font-family: var(--font-sans);
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.box {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--border-color);
+  display: inline-block;
+  margin-right: 4px;
+  text-align: center;
+  line-height: 10px;
+  font-size: 10px;
+  font-weight: bold;
+}
+.box.checked::after {
+  content: '✓';
+}
+
+/* Tables */
+.print-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 5px;
+}
+
+.print-table th, .print-table td {
+  text-align: center;
+  padding: 2px;
+  font-size: 10px;
+}
+
+.print-table th:first-child, .print-table td:first-child {
+  text-align: left;
+}
+
+/* Specific Section Layouts */
+.building-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;
+}
+
+.construction-types, .occupancy-types {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.occupancy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 2px;
+}
+
+.evaluation-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 10px;
+}
+
+.damage-estimates {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border-color);
+  padding-left: 10px;
+}
+
+.posting-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 10px 0;
+  font-weight: bold;
+  font-family: var(--font-sans);
+  font-size: 11px;
+}
+
+.indent {
+  margin-left: 20px;
+}
+
+@media print {
+  body {
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .print-container {
+    border: none;
+  }
+  .print-header {
+    background-color: var(--bg-dark) !important;
+    color: #fff !important;
+  }
+  /* Remove print button in print view */
+  .no-print {
+    display: none !important;
+  }
+}
+
+.no-print {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.btn-print {
+  padding: 10px 20px;
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
