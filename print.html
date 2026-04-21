@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Assessment</title>
+  <link rel="stylesheet" href="css/print.css">
+</head>
+<body>
+  <div class="no-print">
+    <button class="btn-print" onclick="window.print()">Print Form</button>
+    <button class="btn-print" onclick="window.close()" style="background: #4b5563;">Close</button>
+  </div>
+
+  <div class="print-container">
+    <div class="print-header">
+      Rapid Damage Assessment Form
+    </div>
+
+    <!-- 1. Inspection -->
+    <div class="print-section">
+      <div class="section-title">Inspection</div>
+      <div class="flex-row">
+        <div class="field w-50">
+          <label>Inspector:</label>
+          <span class="field-value" id="p-inspector"></span>
+        </div>
+        <div class="field w-50">
+          <label>Inspection date:</label>
+          <span class="field-value" id="p-date" style="width: 100px;"></span>
+          <label style="margin-left: 5px;">time:</label>
+          <span class="field-value" id="p-time"></span>
+          <span style="font-size: 8px; margin-left: 2px;">(24 hour clock)</span>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="field w-50">
+          <label>Agency/Campus:</label>
+          <span class="field-value" id="p-agency"></span>
+        </div>
+        <div class="field w-50" style="align-items: center;">
+          <label>Areas inspected:</label>
+          <div class="checkbox">
+            <div class="box" id="p-area-ext"></div> Exterior Only
+          </div>
+          <div class="checkbox">
+            <div class="box" id="p-area-both"></div> Exterior and interior
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Building Description -->
+    <div class="print-section">
+      <div class="section-title">Building Description</div>
+      <div class="building-grid">
+        <div class="flex-col">
+          <div class="field">
+            <label>Building Name:</label>
+            <span class="field-value" id="p-bldg-name"></span>
+          </div>
+          <div class="field">
+            <label>Address:</label>
+            <span class="field-value" id="p-bldg-address"></span>
+          </div>
+          <div class="field" style="margin-top: 10px;">
+            <label>Building Marshal:</label>
+            <span class="field-value" id="p-bldg-marshal"></span>
+          </div>
+          <div class="field">
+            <label>Number of story above ground:</label>
+            <span class="field-value" id="p-story-above" style="width: 30px;"></span>
+            <label style="margin-left: 5px;">below ground:</label>
+            <span class="field-value" id="p-story-below"></span>
+          </div>
+        </div>
+
+        <div class="flex-col">
+          <div style="font-family: Arial; font-weight: bold; font-size: 10px; margin-bottom: 2px; text-align: center;">Type of Construction</div>
+          <div class="construction-types">
+            <div class="checkbox"><div class="box" id="p-type-wood"></div> Wood Frame</div>
+            <div class="checkbox"><div class="box" id="p-type-steel"></div> Steel Frame</div>
+            <div class="checkbox"><div class="box" id="p-type-concrete"></div> Concrete Frame</div>
+            <div class="checkbox"><div class="box" id="p-type-masonry"></div> Masonry</div>
+            <div class="field"><div class="checkbox"><div class="box" id="p-type-other"></div> Other:</div><span class="field-value" id="p-type-other-text"></span></div>
+          </div>
+        </div>
+
+        <div class="flex-col">
+          <div style="font-family: Arial; font-weight: bold; font-size: 10px; margin-bottom: 2px; text-align: center;">Primary Occupancy</div>
+          <div class="occupancy-grid">
+            <div class="checkbox"><div class="box" id="p-occ-single"></div> Single Family Dwelling</div>
+            <div class="checkbox"><div class="box" id="p-occ-ind"></div> Industrial</div>
+            <div class="checkbox"><div class="box" id="p-occ-multi"></div> Multi-residential</div>
+            <div class="checkbox"><div class="box" id="p-occ-off"></div> Offices</div>
+            <div class="checkbox"><div class="box" id="p-occ-emerg"></div> Emergency Services</div>
+            <div class="checkbox"><div class="box" id="p-occ-com"></div> Commercial</div>
+            <div class="checkbox"><div class="box" id="p-occ-school"></div> School</div>
+            <div class="checkbox"><div class="box" id="p-occ-gov"></div> Government</div>
+          </div>
+          <div class="field" style="margin-top: 2px;"><div class="checkbox"><div class="box" id="p-occ-other"></div> Other:</div><span class="field-value" id="p-occ-other-text"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Evaluation -->
+    <div class="print-section">
+      <div class="section-title">Evaluation</div>
+      <div style="font-size: 9px; margin-bottom: 5px;">Investigate the building and area around it for the conditions below and check the appropriate column.</div>
+      
+      <div class="evaluation-grid">
+        <div>
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th style="font-family: Arial;">Observed Conditions:</th>
+                <th>Minor/None</th>
+                <th>Moderate</th>
+                <th>Severe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Collapse Structure</td>
+                <td><div class="box" id="p-cond-col-min"></div></td>
+                <td><div class="box" id="p-cond-col-mod"></div></td>
+                <td><div class="box" id="p-cond-col-sev"></div></td>
+              </tr>
+              <tr>
+                <td>Building or story leaning / out of plumb</td>
+                <td><div class="box" id="p-cond-lean-min"></div></td>
+                <td><div class="box" id="p-cond-lean-mod"></div></td>
+                <td><div class="box" id="p-cond-lean-sev"></div></td>
+              </tr>
+              <tr>
+                <td>Damage to primary structural members, racking of walls</td>
+                <td><div class="box" id="p-cond-dam-min"></div></td>
+                <td><div class="box" id="p-cond-dam-mod"></div></td>
+                <td><div class="box" id="p-cond-dam-sev"></div></td>
+              </tr>
+              <tr>
+                <td>Falling hazards</td>
+                <td><div class="box" id="p-cond-fall-min"></div></td>
+                <td><div class="box" id="p-cond-fall-mod"></div></td>
+                <td><div class="box" id="p-cond-fall-sev"></div></td>
+              </tr>
+              <tr>
+                <td>Ground movement or slope</td>
+                <td><div class="box" id="p-cond-gr-min"></div></td>
+                <td><div class="box" id="p-cond-gr-mod"></div></td>
+                <td><div class="box" id="p-cond-gr-sev"></div></td>
+              </tr>
+              <tr>
+                <td>Damaged / submerged fixtures or services</td>
+                <td><div class="box" id="p-cond-fix-min"></div></td>
+                <td><div class="box" id="p-cond-fix-mod"></div></td>
+                <td><div class="box" id="p-cond-fix-sev"></div></td>
+              </tr>
+              <tr>
+                <td><div class="field" style="margin:0;">Proximity risks / other: <span class="field-value" id="p-cond-oth-text"></span></div></td>
+                <td><div class="box" id="p-cond-oth-min"></div></td>
+                <td><div class="box" id="p-cond-oth-mod"></div></td>
+                <td><div class="box" id="p-cond-oth-sev"></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="damage-estimates">
+          <div style="font-family: Arial; font-weight: bold; font-size: 10px; text-align: center;">Estimated Building Damage<br><span style="font-size: 8px; font-weight: normal;">(excluding contents)</span></div>
+          <div style="margin-top: 5px;">
+            <div class="checkbox"><div class="box" id="p-dam-none"></div> None</div>
+            <div class="checkbox"><div class="box" id="p-dam-10"></div> 1 - 10 %</div>
+            <div class="checkbox"><div class="box" id="p-dam-30"></div> 11 - 30 %</div>
+            <div class="checkbox"><div class="box" id="p-dam-60"></div> 31 - 60 %</div>
+            <div class="checkbox"><div class="box" id="p-dam-99"></div> 61 - 99 %</div>
+            <div class="checkbox"><div class="box" id="p-dam-100"></div> 100 %</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="field" style="margin-top: 10px;">
+        <label>Comments:</label>
+        <span class="field-value" id="p-eval-comments"></span>
+      </div>
+    </div>
+
+    <!-- 4. Posting -->
+    <div class="print-section">
+      <div class="section-title">Posting</div>
+      <div style="font-size: 9px; line-height: 1.1;">Severe conditions endangering the overall building are grounds for an Unsafe posting. Localised Severe and overall Moderate conditions may allow a Restricted Use posting. Where required, ensure that RESTRICTED USE and UNSAFE placards are posted at all entrances.</div>
+      
+      <div class="posting-row">
+        <div class="checkbox"><div class="box" id="p-post-green"></div> INSPECTED <span style="font-weight:normal;">(Green placard)</span></div>
+        <div class="checkbox"><div class="box" id="p-post-yellow"></div> RESTRICTED USE <span style="font-weight:normal;">(Yellow placard)</span></div>
+        <div class="checkbox"><div class="box" id="p-post-red"></div> UNSAFE <span style="font-weight:normal;">(Red placard)</span></div>
+      </div>
+
+      <div style="font-size: 9px; margin-bottom: 5px;">Record any use and entry restrictions exactly as written on placard:</div>
+      
+      <div class="indent">
+        <div class="field">
+          <div class="checkbox"><div class="box" id="p-res-enter"></div></div>
+          <label>Do not enter or use the following areas:</label>
+          <span class="field-value" id="p-res-enter-text"></span>
+        </div>
+        <div class="field">
+          <div class="checkbox"><div class="box" id="p-res-brief"></div></div>
+          <label>Brief entry allowed for access to contents:</label>
+          <span class="field-value" id="p-res-brief-text"></span>
+        </div>
+        <div class="field">
+          <div class="checkbox"><div class="box" id="p-res-use"></div></div>
+          <label>Do not use flooded/damaged appliances, devices or services (electric, gas) until recertified by a licensed contractor</label>
+        </div>
+        <div class="field">
+          <div class="checkbox"><div class="box" id="p-res-oth"></div></div>
+          <label>Other restrictions:</label>
+          <span class="field-value" id="p-res-oth-text"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Further Actions -->
+    <div class="print-section">
+      <div class="section-title" style="display: inline-block;">Further Actions</div>
+      <span style="font-size: 9px; margin-left: 10px;">Check the boxes below only if further actions are needed.</span>
+      
+      <div class="indent" style="margin-top: 5px;">
+        <div class="field">
+          <div class="checkbox"><div class="box" id="p-act-bar"></div></div>
+          <label>Barricades needed in the following areas:</label>
+          <span class="field-value" id="p-act-bar-text"></span>
+        </div>
+        <div class="flex-row" style="align-items: baseline;">
+          <div class="checkbox"><div class="box" id="p-act-det"></div></div>
+          <label>Detailed Evaluation recommended:</label>
+          <div class="checkbox indent"><div class="box" id="p-act-det-str"></div> Structural</div>
+          <div class="checkbox"><div class="box" id="p-act-det-geo"></div> Geotechnical</div>
+          <div class="checkbox"><div class="box" id="p-act-det-oth"></div> Other</div>
+        </div>
+        <div class="field">
+          <div class="checkbox"><div class="box" id="p-act-oth"></div></div>
+          <label>Other recommendations:</label>
+          <span class="field-value" id="p-act-oth-text"></span>
+        </div>
+      </div>
+      <div class="field" style="margin-top: 5px;">
+        <label>Comments:</label>
+        <span class="field-value" id="p-act-comments"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/print.js"></script>
+</body>
+</html>
